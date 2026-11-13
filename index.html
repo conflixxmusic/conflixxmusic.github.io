@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ConFlixx - Official Music</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #070005;
+    --bg-2: #12000d;
+    --magenta: #ff2fb3;
+    --magenta-hot: #ff5cc8;
+    --magenta-dim: #b31e7d;
+    --ink: #f5eef2;
+    --ink-dim: #b9a8b3;
+    --card: #160010;
+    --line: rgba(255, 47, 179, 0.22);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Archivo', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  /* Hero */
+  .hero { position: relative; }
+  .hero-banner {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+    margin-top: 20px;
+  }
+  .hero-inner { width: 100%; padding: 8px 0 40px; }
+  .hero h1 {
+    font-family: 'Archivo Black', 'Archivo', sans-serif;
+    font-size: clamp(44px, 9vw, 96px);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    text-shadow: 0 0 32px rgba(255, 47, 179, 0.55), 0 0 90px rgba(255, 47, 179, 0.3);
+  }
+  .hero h1 span { color: var(--magenta); }
+  .tagline {
+    margin-top: 14px;
+    font-size: clamp(15px, 2.4vw, 19px);
+    color: var(--ink-dim);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .tagline strong { color: var(--magenta-hot); font-weight: 700; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 24px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .btn:active { transform: scale(0.97); }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--magenta) 0%, var(--magenta-dim) 100%);
+    color: #fff;
+    box-shadow: 0 4px 24px rgba(255, 47, 179, 0.45);
+  }
+  .btn-primary:hover { box-shadow: 0 6px 32px rgba(255, 47, 179, 0.65); transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--magenta-hot);
+    border: 1.5px solid var(--magenta);
+  }
+  .btn-ghost:hover { background: rgba(255, 47, 179, 0.12); }
+
+  /* Sections */
+  section { padding: 72px 0 24px; }
+  .section-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--magenta);
+  }
+  .section-title {
+    font-family: 'Archivo Black', 'Archivo', sans-serif;
+    font-size: clamp(28px, 5vw, 44px);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-top: 8px;
+  }
+
+  /* Album cards */
+  .albums {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    margin-top: 36px;
+  }
+  .album {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  .album:hover {
+    transform: translateY(-4px);
+    border-color: var(--magenta);
+    box-shadow: 0 12px 40px rgba(255, 47, 179, 0.22);
+  }
+  .album img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+  .album-body { padding: 20px 20px 22px; display: flex; flex-direction: column; flex: 1; }
+  .album-title {
+    font-family: 'Archivo Black', 'Archivo', sans-serif;
+    font-size: 19px;
+    text-transform: uppercase;
+    line-height: 1.15;
+  }
+  .album-meta { margin-top: 8px; font-size: 14px; color: var(--ink-dim); font-weight: 600; }
+  .album-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; margin-top: auto; padding-top: 18px; }
+  .album-links .btn { padding: 10px 18px; font-size: 13.5px; }
+
+  /* Follow */
+  .follow {
+    margin-top: 20px;
+    background: linear-gradient(160deg, var(--bg-2) 0%, #1f0316 100%);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 44px 32px;
+    text-align: center;
+  }
+  .follow p { color: var(--ink-dim); margin-top: 12px; font-size: 16px; }
+  .follow .cta-row { justify-content: center; margin-top: 26px; }
+
+  footer {
+    padding: 56px 0 40px;
+    text-align: center;
+    color: var(--ink-dim);
+    font-size: 13px;
+    letter-spacing: 0.06em;
+  }
+  footer .flame { color: var(--magenta); }
+
+  @media (max-width: 860px) {
+    .albums { grid-template-columns: 1fr; max-width: 440px; margin-left: auto; margin-right: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap"><img class="hero-banner" src="hero.png" alt="ConFlixx chrome logo on black with magenta smoke and palm silhouettes"></div>
+  <div class="wrap hero-inner">
+    <h1>Con<span>Flixx</span></h1>
+    <p class="tagline">Hip-Hop/Rap. <strong>Three albums out now.</strong></p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://open.spotify.com/artist/6ozE1K3NEGrmxVaFuqYWEA">Listen on Spotify</a>
+      <a class="btn btn-ghost" href="https://music.apple.com/us/artist/conflixx/6832571931">Listen on Apple Music</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="music">
+    <p class="section-label">The Music</p>
+    <h2 class="section-title">Albums</h2>
+    <div class="albums">
+
+      <article class="album">
+        <img src="get-out-my-way.jpg" alt="GET OUT MY WAY album cover">
+        <div class="album-body">
+          <h3 class="album-title">Get Out My Way</h3>
+          <p class="album-meta">14 tracks &middot; Nov 12, 2026</p>
+          <div class="album-links">
+            <a class="btn btn-primary" href="https://open.spotify.com/album/7vnOo1Jly6XMr6n7kWUlUV">Spotify</a>
+            <a class="btn btn-ghost" href="https://music.apple.com/us/album/get-out-my-way/6833852286">Apple Music</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="album">
+        <img src="cracker-jack.jpg" alt="CRACKER JACK album cover">
+        <div class="album-body">
+          <h3 class="album-title">Cracker Jack</h3>
+          <p class="album-meta">13 tracks &middot; Nov 13, 2026</p>
+          <div class="album-links">
+            <a class="btn btn-primary" href="https://open.spotify.com/album/6S7LJHAX2s4EIbdrIkl4pB">Spotify</a>
+            <a class="btn btn-ghost" href="https://music.apple.com/us/album/cracker-jack/6834378949">Apple Music</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="album">
+        <img src="welcome-to-the-flixx-tapes.jpg" alt="WELCOME TO THE FLIXX TAPES album cover">
+        <div class="album-body">
+          <h3 class="album-title">Welcome to the Flixx Tapes</h3>
+          <p class="album-meta">12 tracks &middot; Nov 13, 2026</p>
+          <div class="album-links">
+            <a class="btn btn-primary" href="https://open.spotify.com/album/5xp4g7mK1mXb3YhRj4cNoi">Spotify</a>
+            <a class="btn btn-ghost" href="https://music.apple.com/us/album/welcome-to-the-flixx-tapes/6834389944">Apple Music</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="follow">
+    <div class="follow">
+      <p class="section-label">Stay Locked In</p>
+      <h2 class="section-title">Follow ConFlixx</h2>
+      <p>Follow on your streaming service and be first to hear the next drop.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://open.spotify.com/artist/6ozE1K3NEGrmxVaFuqYWEA">Follow on Spotify</a>
+        <a class="btn btn-ghost" href="https://music.apple.com/us/artist/conflixx/6832571931">Follow on Apple Music</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>&copy; 2026 ConFlixx</p>
+</footer>
+
+</body>
+</html>
